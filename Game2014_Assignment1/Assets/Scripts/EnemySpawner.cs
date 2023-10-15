@@ -6,11 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    float spawnrate = 1f;
+    public float spawnrate = 1f;
 
-    GameObject[] enemyPrefabs;
+    public GameObject[] enemyPrefabs;
 
-    bool canSpawn = true; 
+    public bool canSpawn = true; 
         
 
 
@@ -27,16 +27,13 @@ public class EnemySpawner : MonoBehaviour
         while (canSpawn) {
             yield return wait;
 
+            int rand = Random.Range(0, enemyPrefabs.Length - 1);
+            GameObject enemyToSpawn = enemyPrefabs[rand];
+            
+            Vector2 randPosition = new Vector2(Random.Range(-13,13),Random.Range(-13,13));
 
 
-
-
-
-
-            Instantiate(enemyPrefabs[0]);
-
-
-
+            Instantiate(enemyToSpawn, randPosition, Quaternion.identity);
             
         }
     }
