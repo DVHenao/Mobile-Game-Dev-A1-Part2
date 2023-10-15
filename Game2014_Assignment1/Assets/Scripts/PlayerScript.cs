@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     float lastHorizontalVector;
     float lastVerticalVector;
 
+    public float health;
 
 
 
@@ -24,6 +25,7 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        health = 100;
     }
 
     // Update is called once per frame
@@ -71,7 +73,21 @@ public class PlayerScript : MonoBehaviour
         if (lastHorizontalVector < 0) { spriteRenderer.flipX = true; }
         else { spriteRenderer.flipX = false; }
     }
+    public void TakeDamage()
+    {
+        health -= 10;
 
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("player died!");
+
+    }
 
 
 }
