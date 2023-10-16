@@ -8,13 +8,13 @@ public class EnemyScript : MonoBehaviour
     public float moveSpeed;
 
     public float distance;
+    public float health;
 
 
     Animator animator;
     SpriteRenderer spriteRenderer;
     float lastHorizontalVector;
     float lastVerticalVector;
-    
 
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        health = 10;
         player = GameObject.FindWithTag("Player");
 
     }
@@ -41,8 +41,6 @@ public class EnemyScript : MonoBehaviour
         transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
 
-
-
         if (direction != Vector2.zero)
         {
             //animator.SetBool("isMoving", true);
@@ -51,6 +49,11 @@ public class EnemyScript : MonoBehaviour
         else
         {
             //animator.SetBool("isMoving", false);
+        }
+
+        if(health <= 0)
+        {
+            Die();
         }
     }
 
@@ -63,8 +66,6 @@ public class EnemyScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision Detected");
-
         if (collision == null)
         { Debug.Log("collision is null"); }
         else
@@ -72,10 +73,13 @@ public class EnemyScript : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 player.GetComponent<PlayerScript>().TakeDamage();
+                gameObject.transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
             }
-
-            gameObject.transform.position = new Vector2(Random.Range(-13,13), Random.Range(-13, 13)     );
         }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
 

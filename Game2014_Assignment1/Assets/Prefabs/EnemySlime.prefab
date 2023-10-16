@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5411984463184928050}
   m_Layer: 0
   m_Name: EnemySlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 3
   distance: 0
+  health: 10
 --- !u!95 &5411984463184928050
 Animator:
   serializedVersion: 5

@@ -19,12 +19,21 @@ public class PlayerScript : MonoBehaviour
 
 
 
+    public bool attacking;
+    public GameObject attackArea;
+    public float attackSpeed = 0.25f;
+    public float timer;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        attackArea = transform.GetChild(0).gameObject;
         health = 100;
     }
 
@@ -38,6 +47,25 @@ public class PlayerScript : MonoBehaviour
         }
         else {
             animator.SetBool("isMoving", false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
+
+        if (attacking)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= attackSpeed)
+            {
+                timer = 0;
+                attacking = false;
+                animator.SetBool("isAttacking", attacking);
+                attackArea.SetActive(attacking);
+            }
         }
     }
 
@@ -88,6 +116,12 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("player died!");
 
     }
-
+    
+    public void Attack()
+    {
+        attacking = true;
+        attackArea.SetActive(attacking);
+        animator.SetBool("isAttacking", attacking);
+    }
 
 }
