@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float lastHorizontalVector;
     float lastVerticalVector;
-
+    
 
 
     // Start is called before the first frame update
@@ -25,10 +25,6 @@ public class EnemyScript : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-        if (player != null )
-        {
-            Debug.Log("player found!");
-        }
     }
 
     // Update is called once per frame
@@ -49,12 +45,12 @@ public class EnemyScript : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
-            animator.SetBool("isMoving", true);
+            //animator.SetBool("isMoving", true);
             SpriteDirectionChecker();
         }
         else
         {
-            animator.SetBool("isMoving", false);
+            //animator.SetBool("isMoving", false);
         }
     }
 
@@ -65,18 +61,20 @@ public class EnemyScript : MonoBehaviour
         else { spriteRenderer.flipX = false; }
     }
 
-    public void OnTriggerEnter(Collider collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-
+        Debug.Log("Collision Detected");
 
         if (collision == null)
         { Debug.Log("collision is null"); }
         else
         {
-            if (collision.GameObject.Tag == "Player")
+            if (collision.gameObject.tag == "Player")
             {
-                player.TakeDamage();
+                player.GetComponent<PlayerScript>().TakeDamage();
             }
+
+            gameObject.transform.position = new Vector2(Random.Range(-13,13), Random.Range(-13, 13)     );
         }
     }
 
