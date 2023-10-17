@@ -6,7 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float spawnrate = 1f;
+    public float enemySpawnRate = 1f;
+
+    public float lootSpawnRate = 5f;
+
+    public GameObject lootPrefab;
 
     public GameObject[] enemyPrefabs;
 
@@ -18,11 +22,12 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(Spawner());
+        StartCoroutine(LootSpawner());
     }
 
     private IEnumerator Spawner()
     {
-        WaitForSeconds wait = new WaitForSeconds(spawnrate);
+        WaitForSeconds wait = new WaitForSeconds(enemySpawnRate);
 
         while (canSpawn) {
             yield return wait;
@@ -34,7 +39,25 @@ public class EnemySpawner : MonoBehaviour
 
 
             Instantiate(enemyToSpawn, randPosition, Quaternion.identity);
+
+            enemySpawnRate -= 0.01f;
             
         }
     }
+
+    private IEnumerator LootSpawner()
+    {
+        WaitForSeconds wait = new WaitForSeconds(lootSpawnRate);
+
+        while (canSpawn)
+        {
+            yield return wait;
+
+            Vector2 randPosition = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
+
+
+            Instantiate(lootPrefab, randPosition, Quaternion.identity);
+        }
+    }
+
 }

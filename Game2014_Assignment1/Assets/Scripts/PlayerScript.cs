@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -144,4 +145,25 @@ public class PlayerScript : MonoBehaviour
         }
         animator.SetBool("isAttacking", attacking);
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PickUp")
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(PickUp());
+        }
+   
+    }
+
+    private IEnumerator PickUp()
+    {
+        WaitForSeconds wait = new WaitForSeconds(5);
+
+        moveSpeed *= 2;
+
+        yield return wait;
+
+        moveSpeed /= 2;
+    }
+
 }
