@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "emulator-5554",
         "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-        "processId": 3509,
+        "processId": 4296,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,73 +11,37 @@
         {
             "deviceId": "emulator-5554",
             "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 5917,
-            "exited": true
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 6238,
-            "exited": true
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 6386,
-            "exited": true
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.ldmnq.launcher3",
-            "processId": 2276,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 6573,
-            "exited": true
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 6766,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 6894,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 7075,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 7234,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
-            "processId": 7388,
-            "exited": false
-        },
-        {
-            "deviceId": "emulator-5554",
-            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
             "processId": 4010,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "emulator-5554",
             "name": "com.EmmanuelleHenao.Game2014_Assignment1",
             "processId": 3509,
+            "exited": true
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
+            "processId": 3815,
+            "exited": true
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
+            "processId": 4031,
+            "exited": true
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.ldmnq.launcher3",
+            "processId": 2326,
+            "exited": false
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.EmmanuelleHenao.Game2014_Assignment1",
+            "processId": 4296,
             "exited": false
         }
     ],

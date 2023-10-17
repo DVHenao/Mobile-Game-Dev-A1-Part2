@@ -74,8 +74,9 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 1)
         {
+            if(!attacking)
             Attack();
         }
 
@@ -109,7 +110,7 @@ public class PlayerScript : MonoBehaviour
         moveDir = new Vector2(moveX, moveY).normalized;
 
         // mobile/joystick input
-
+        if (Input.touchCount > 0)
         moveDir = new Vector2(joystick.Horizontal,joystick.Vertical);
 
         if (moveDir.x != 0)
