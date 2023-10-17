@@ -11,10 +11,20 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rb;
     Vector2 moveDir;
 
+
+    public AudioSource audioSource;
+    public AudioClip pickupSound;
+    public AudioClip swingSound;
+    public AudioClip takeDamageSound;
+
+    public FixedJoystick joystick;
+
     Animator animator;
     SpriteRenderer spriteRenderer;
     float lastHorizontalVector;
     float lastVerticalVector;
+
+
 
     public float health;
     public GameObject UIObject;
@@ -36,7 +46,7 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        audioSource = GetComponent<AudioSource>();
         UIObject = GameObject.Find("UICanvas");
 
         attackAreaRight = transform.GetChild(0).gameObject;
@@ -47,6 +57,8 @@ public class PlayerScript : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         animator.SetBool("isMoving", false);
         moveDir = new Vector2 (0, 0);
+
+        ResumeGame();
     }
 
     // Update is called once per frame
@@ -90,11 +102,15 @@ public class PlayerScript : MonoBehaviour
 
     void InputManagement()
     {
-      
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveY = Input.GetAxisRaw("Vertical");
+      //keyboard input
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
-            moveDir = new Vector2(moveX, moveY).normalized;
+        moveDir = new Vector2(moveX, moveY).normalized;
+
+        // mobile/joystick input
+
+        moveDir = new Vector2(joystick.Horizontal,joystick.Vertical);
 
         if (moveDir.x != 0)
         {
@@ -104,6 +120,8 @@ public class PlayerScript : MonoBehaviour
         {
             lastVerticalVector = moveDir.y;
         }
+
+
     }
 
 
@@ -120,6 +138,10 @@ public class PlayerScript : MonoBehaviour
     }
     public void TakeDamage()
     {
+
+        audioSource.clip = takeDamageSound;
+        audioSource.Play();
+
         health -= 10;
         UIObject.GetComponent<MainMenuUI>().TakeDamage();
 
@@ -129,15 +151,24 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
     public void Die()
     {
+        PauseGame();
         Debug.Log("player died!");
-
     }
     
     public void Attack()
     {
-
+        audioSource.clip = swingSound;
+        audioSource.Play();
         attacking = true;
 
         if (lastHorizontalVector < 0)
@@ -154,6 +185,9 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "PickUp")
         {
+            audioSource.clip = pickupSound;
+            audioSource.Play();
+
             Destroy(collision.gameObject);
             StartCoroutine(PickUp());
         }

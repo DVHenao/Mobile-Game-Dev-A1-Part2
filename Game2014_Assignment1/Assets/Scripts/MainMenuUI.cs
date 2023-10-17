@@ -24,6 +24,11 @@ public class MainMenuUI : MonoBehaviour
     public TMP_Text ScoreValue;
     public int ScoreCount;
 
+
+    public GameObject GameAudioPlayer;
+    public GameObject GameOverAudioPlayer;
+    public GameObject MainMenuAudioPlayer;
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -37,6 +42,8 @@ public class MainMenuUI : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(1);
+        GameAudioPlayer.SetActive(true);
+        GameOverAudioPlayer.SetActive(false);
     }
 
 
@@ -55,6 +62,8 @@ public class MainMenuUI : MonoBehaviour
     public void GameOver()
     {
         GameOverUI.SetActive(true);
+        GameAudioPlayer.SetActive(false);
+        GameOverAudioPlayer.SetActive(true);
     }
 
     public void MoveScore()
