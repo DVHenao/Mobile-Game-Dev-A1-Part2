@@ -24,7 +24,6 @@ public class EnemyScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 10;
         player = GameObject.FindWithTag("Player");
-
     }
 
     // Update is called once per frame

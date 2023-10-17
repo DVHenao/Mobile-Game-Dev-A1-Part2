@@ -10,12 +10,23 @@ Revision History: added General UI Functionality - Oct 2nd, 2023
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-  
+
+    public GameObject[] Hearts;
+    public GameObject GameOverUI;
+
+    public TMP_Text ScoreValue;
+
+    public void Start()
+    {
+        ScoreValue = gameObject.GetComponent<TMP_Text>();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -26,7 +37,32 @@ public class MainMenuUI : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(1);
+    }
 
 
+    public void TakeDamage()
+    {
+        Destroy(Hearts[Hearts.Length - 1]);
 
+       if (Hearts.Length > 0)
+       System.Array.Resize(ref Hearts,Hearts.Length-1);
+
+       if (Hearts.Length == 0)
+            GameOver();
+
+    }
+
+    public void GameOver()
+    {
+        GameOverUI.SetActive(true);
+    }
+
+    public void MoveScore()
+    {
+        ScoreValue.text = "LOL";
+        Debug.Log("ASDHASDUASd");
+    }
 }

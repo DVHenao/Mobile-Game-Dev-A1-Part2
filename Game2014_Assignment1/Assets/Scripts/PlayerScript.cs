@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     float lastVerticalVector;
 
     public float health;
-
+    public GameObject UIObject;
 
 
     public bool attacking;
@@ -28,6 +28,8 @@ public class PlayerScript : MonoBehaviour
 
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +37,11 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        UIObject = GameObject.Find("UICanvas");
+
         attackAreaRight = transform.GetChild(0).gameObject;
         attackAreaLeft = transform.GetChild(1).gameObject;
-        health = 100;
+        health = 30;
 
 
         rb.velocity = new Vector2(0, 0);
@@ -117,6 +121,7 @@ public class PlayerScript : MonoBehaviour
     public void TakeDamage()
     {
         health -= 10;
+        UIObject.GetComponent<MainMenuUI>().TakeDamage();
 
         if (health <= 0)
         {
@@ -159,11 +164,11 @@ public class PlayerScript : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(5);
 
-        moveSpeed *= 2;
+        moveSpeed += 3;
 
         yield return wait;
 
-        moveSpeed /= 2;
+        moveSpeed -= 3;
     }
 
 }

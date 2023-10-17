@@ -176,6 +176,7 @@ MonoBehaviour:
   moveSpeed: 3
   distance: 0
   health: 10
+  UIOBject: {fileID: 0}
 --- !u!95 &5411984463184928050
 Animator:
   serializedVersion: 5

@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             int rand = Random.Range(0, enemyPrefabs.Length - 1);
             GameObject enemyToSpawn = enemyPrefabs[rand];
             
-            Vector2 randPosition = new Vector2(Random.Range(-13,13),Random.Range(-13,13));
+            Vector2 randPosition = new Vector2(Random.Range(-12,12),Random.Range(-12,12));
 
 
             Instantiate(enemyToSpawn, randPosition, Quaternion.identity);
@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return wait;
 
-            Vector2 randPosition = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
+            Vector2 randPosition = new Vector2(Random.Range(-12, 12), Random.Range(-12, 12));
 
 
             Instantiate(lootPrefab, randPosition, Quaternion.identity);
