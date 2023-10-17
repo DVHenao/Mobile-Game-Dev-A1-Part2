@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
 
     public float distance;
     public float health;
+    public GameObject UI;
 
 
     Animator animator;
@@ -24,6 +25,7 @@ public class EnemyScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 10;
         player = GameObject.FindWithTag("Player");
+        UI = GameObject.Find("UICanvas");
     }
 
     // Update is called once per frame
@@ -78,6 +80,8 @@ public class EnemyScript : MonoBehaviour
     }
     public void Die()
     {
+        UI.GetComponent<MainMenuUI>().MoveScore();
+        Debug.Log("enemy Died");
         Destroy(gameObject);
     }
 

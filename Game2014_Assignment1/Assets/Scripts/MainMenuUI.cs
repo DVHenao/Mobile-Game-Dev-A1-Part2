@@ -8,6 +8,7 @@ Revision History: added General UI Functionality - Oct 2nd, 2023
 
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,11 +22,7 @@ public class MainMenuUI : MonoBehaviour
     public GameObject GameOverUI;
 
     public TMP_Text ScoreValue;
-
-    public void Start()
-    {
-        ScoreValue = gameObject.GetComponent<TMP_Text>();
-    }
+    public int ScoreCount;
 
     public void PlayGame()
     {
@@ -62,7 +59,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void MoveScore()
     {
-        ScoreValue.text = "LOL";
-        Debug.Log("ASDHASDUASd");
+        ScoreCount += 10;
+        ScoreValue.text = ScoreCount.ToString();
+
     }
 }
