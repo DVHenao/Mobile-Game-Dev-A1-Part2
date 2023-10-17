@@ -20,7 +20,8 @@ public class PlayerScript : MonoBehaviour
 
 
     public bool attacking;
-    public GameObject attackArea;
+    public GameObject attackAreaRight;
+    public GameObject attackAreaLeft;
     public float attackSpeed = 0.25f;
     public float timer;
 
@@ -33,8 +34,14 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        attackArea = transform.GetChild(0).gameObject;
+        attackAreaRight = transform.GetChild(0).gameObject;
+        attackAreaLeft = transform.GetChild(1).gameObject;
         health = 100;
+
+
+        rb.velocity = new Vector2(0, 0);
+        animator.SetBool("isMoving", false);
+        moveDir = new Vector2 (0, 0);
     }
 
     // Update is called once per frame
@@ -64,7 +71,8 @@ public class PlayerScript : MonoBehaviour
                 timer = 0;
                 attacking = false;
                 animator.SetBool("isAttacking", attacking);
-                attackArea.SetActive(attacking);
+                attackAreaRight.SetActive(attacking);
+                attackAreaLeft.SetActive(attacking);
             }
         }
     }
@@ -77,16 +85,20 @@ public class PlayerScript : MonoBehaviour
 
     void InputManagement()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+      
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector2(moveX, moveY).normalized;
+            moveDir = new Vector2(moveX, moveY).normalized;
 
         if (moveDir.x != 0)
+        {
             lastHorizontalVector = moveDir.x;
+        }
         if (moveDir.y != 0)
+        {
             lastVerticalVector = moveDir.y;
-
+        }
     }
 
 
@@ -119,9 +131,17 @@ public class PlayerScript : MonoBehaviour
     
     public void Attack()
     {
+
         attacking = true;
-        attackArea.SetActive(attacking);
+
+        if (lastHorizontalVector < 0)
+        {
+            attackAreaLeft.SetActive(attacking);
+        }
+        if (lastHorizontalVector > 0)
+        {
+            attackAreaRight.SetActive(attacking);
+        }
         animator.SetBool("isAttacking", attacking);
     }
-
 }
