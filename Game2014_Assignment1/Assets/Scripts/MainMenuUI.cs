@@ -22,6 +22,7 @@ public class MainMenuUI : MonoBehaviour
     public GameObject GameOverUI;
 
     public TMP_Text ScoreValue;
+    public TMP_Text GameOverScoreValue;
     public int ScoreCount;
 
 
@@ -64,6 +65,8 @@ public class MainMenuUI : MonoBehaviour
         GameOverUI.SetActive(true);
         GameAudioPlayer.SetActive(false);
         GameOverAudioPlayer.SetActive(true);
+
+        GameOverScoreValue.text = "Score: " + ScoreCount.ToString();
     }
 
     public void MoveScore()// self explanatory
