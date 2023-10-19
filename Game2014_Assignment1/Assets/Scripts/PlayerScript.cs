@@ -1,3 +1,13 @@
+/*
+PlayerScript.cs
+Made by Emmanuelle Henao, Student Number: 101237746
+Last Modified: October 14th, 2023
+Game2014 - Mobile Dev
+Revision History: Cerntal script for all game logic and player logic. seperate into game manager and play manager later - Oct 14th, 2023 
+*/
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -39,7 +49,6 @@ public class PlayerScript : MonoBehaviour
 
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,14 +67,15 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool("isMoving", false);
         moveDir = new Vector2 (0, 0);
 
-        ResumeGame();
+        ResumeGame(); // this is here just in case
     }
 
     // Update is called once per frame
     void Update()
     {
-        InputManagement();
-        if (moveDir != Vector2.zero){
+        InputManagement(); //movement
+
+        if (moveDir != Vector2.zero){ // animation stuff here
             animator.SetBool("isMoving", true); 
             SpriteDirectionChecker();
         }
@@ -74,11 +84,28 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 1)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 1) // both touch and keyboard controls for debugging
         {
             if(!attacking)
             Attack();
         }
+
+        if (Input.touchCount > 0) 
+        {
+            if (Input.GetTouch(0).position.x > Screen.width/2)
+            {
+                if (!attacking)
+                    Attack();
+            }
+
+            if (Input.GetTouch(1).position.x > Screen.width / 2)
+            {
+                if (!attacking)
+                    Attack();
+            }
+
+        }
+
 
         if (attacking)
         {
@@ -137,7 +164,7 @@ public class PlayerScript : MonoBehaviour
         if (lastHorizontalVector < 0) { spriteRenderer.flipX = true; }
         else { spriteRenderer.flipX = false; }
     }
-    public void TakeDamage()
+    public void TakeDamage() // self explantory
     {
 
         audioSource.clip = takeDamageSound;
@@ -152,21 +179,21 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    void PauseGame() // self explantory
     {
         Time.timeScale = 0;
     }
-    void ResumeGame()
+    void ResumeGame() // self explantory
     {
         Time.timeScale = 1;
     }
-    public void Die()
+    public void Die() // self explantory
     {
         PauseGame();
         Debug.Log("player died!");
     }
     
-    public void Attack()
+    public void Attack() // sets the attack collider to active, which is later deactivated in Update()
     {
         audioSource.clip = swingSound;
         audioSource.Play();
@@ -182,7 +209,7 @@ public class PlayerScript : MonoBehaviour
         }
         animator.SetBool("isAttacking", attacking);
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision) // Pickup Audio
     {
         if (collision.gameObject.tag == "PickUp")
         {
@@ -195,7 +222,7 @@ public class PlayerScript : MonoBehaviour
    
     }
 
-    private IEnumerator PickUp()
+    private IEnumerator PickUp() //move speed bonus from pick up
     {
         WaitForSeconds wait = new WaitForSeconds(5);
 

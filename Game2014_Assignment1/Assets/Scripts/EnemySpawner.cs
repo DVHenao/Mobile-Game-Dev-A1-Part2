@@ -1,3 +1,10 @@
+/*
+EnemySpawner.cs
+Made by Emmanuelle Henao, Student Number: 101237746
+Last Modified: October 14th, 2023
+Game2014 - Mobile Dev
+Revision History: Simple Spawner that handles both enemyspawns and loot spawns - Oct 14th, 2023 
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(LootSpawner());
     }
 
-    private IEnumerator Spawner()
+    private IEnumerator Spawner() //simple spawner for enemies
     {
         WaitForSeconds wait = new WaitForSeconds(enemySpawnRate);
 
@@ -45,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator LootSpawner()
+    private IEnumerator LootSpawner() //simple spawner for pickups
     {
         WaitForSeconds wait = new WaitForSeconds(lootSpawnRate);
 

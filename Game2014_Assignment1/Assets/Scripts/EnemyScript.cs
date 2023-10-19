@@ -1,3 +1,11 @@
+/*
+EnemyScript.cs
+Made by Emmanuelle Henao, Student Number: 101237746
+Last Modified: October 14th, 2023
+Game2014 - Mobile Dev
+Revision History: Enemy chases player, inflicts damage and can take hits - Oct 14th, 2023 
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,8 +49,10 @@ public class EnemyScript : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
+        // everything above this comment is for homing towards player and setting correct sprite direction
 
-        if (direction != Vector2.zero)
+
+        if (direction != Vector2.zero)// for animation purposes
         {
             //animator.SetBool("isMoving", true);
             SpriteDirectionChecker();
@@ -59,13 +69,13 @@ public class EnemyScript : MonoBehaviour
     }
 
 
-    void SpriteDirectionChecker()
+    void SpriteDirectionChecker()// animation flip checker
     {
         if (lastHorizontalVector < 0) { spriteRenderer.flipX = true; }
         else { spriteRenderer.flipX = false; }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision) // to inflict damage on the player
     {
         if (collision == null)
         { Debug.Log("collision is null"); }
