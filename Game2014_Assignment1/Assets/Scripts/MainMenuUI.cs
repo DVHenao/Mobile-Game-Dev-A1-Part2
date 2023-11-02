@@ -30,6 +30,21 @@ public class MainMenuUI : MonoBehaviour
     public GameObject GameOverAudioPlayer;
     public GameObject MainMenuAudioPlayer;
 
+    public GameObject MobileJoystick;
+
+    public void Start()
+    {
+        bool usingMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
+
+        if (!usingMobileInput)
+        {
+            Debug.Log("playing on PC");
+            HideUI();
+        }
+        else { Debug.Log("playing on phone"); }
+    }
+
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -74,5 +89,10 @@ public class MainMenuUI : MonoBehaviour
         ScoreCount += 10;
         ScoreValue.text = ScoreCount.ToString();
 
+    }
+
+    void HideUI()
+    {
+        MobileJoystick.SetActive(false);
     }
 }
