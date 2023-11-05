@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed;
   
     Rigidbody2D rb;
-    Vector2 moveDir;
+    public Vector2 moveDir;
 
 
     public AudioSource audioSource;
