@@ -31,8 +31,9 @@ public class PlayerScript : MonoBehaviour
 
     Animator animator;
     SpriteRenderer spriteRenderer;
-    float lastHorizontalVector;
-    float lastVerticalVector;
+    public float lastHorizontalVector;
+    public float lastVerticalVector;
+    public Vector2 lastMovedVector;
 
 
 
@@ -66,6 +67,7 @@ public class PlayerScript : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         animator.SetBool("isMoving", false);
         moveDir = new Vector2 (0, 0);
+        lastMovedVector = new Vector2(1, 0);
 
         ResumeGame(); // this is here just in case
     }
@@ -143,12 +145,17 @@ public class PlayerScript : MonoBehaviour
         if (moveDir.x != 0)
         {
             lastHorizontalVector = moveDir.x;
+            lastMovedVector = new Vector2(lastHorizontalVector, 0.0f); // for attacking directino when not moving
         }
         if (moveDir.y != 0)
         {
             lastVerticalVector = moveDir.y;
+            lastMovedVector = new Vector2(0.0f, lastVerticalVector); // for attacking directino when not moving
         }
-
+        if (moveDir.y != 0 && moveDir.x != 0)
+        {
+            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector); // for attacking directino when not moving
+        }
 
     }
 

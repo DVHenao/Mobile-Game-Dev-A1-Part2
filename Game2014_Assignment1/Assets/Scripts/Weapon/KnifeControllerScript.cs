@@ -17,6 +17,6 @@ public class KnifeControllerScript : WeaponController
         GameObject spawnedWeapon = Instantiate(prefab);
         spawnedWeapon.transform.position = transform.position;
 
-        spawnedWeapon.GetComponent<KnifeBehaviour>().DirectionChecker(player.moveDir);
+        spawnedWeapon.GetComponent<KnifeBehaviour>().DirectionChecker(player.lastMovedVector);
     }
 }

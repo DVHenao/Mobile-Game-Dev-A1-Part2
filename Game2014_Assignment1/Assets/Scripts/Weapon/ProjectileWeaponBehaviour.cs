@@ -68,6 +68,10 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+        else if (dirX == 0 && dirY == 0)
+        {
+            
+        }
 
 
 
