@@ -346,7 +346,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pixelarmory (1)_10
+      name: RighteousFire
       rect:
         serializedVersion: 2
         x: 128
@@ -556,7 +556,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sword
+      name: Knife
       rect:
         serializedVersion: 2
         x: 0
@@ -1952,9 +1952,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Knife: 1825629169
+      RighteousFire: 1128791081
       pixelarmory (1)_0: -1981551655
       pixelarmory (1)_1: -1683734773
-      pixelarmory (1)_10: 1128791081
       pixelarmory (1)_11: -786602611
       pixelarmory (1)_12: 900630094
       pixelarmory (1)_13: -1459107127
@@ -2037,7 +2038,6 @@ TextureImporter:
       pixelarmory (1)_84: 1973973365
       pixelarmory (1)_85: 499198275
       pixelarmory (1)_9: -1103562054
-      sword: 1825629169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
