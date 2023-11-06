@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: KnifeCharacter
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
-  maxHealth: {fileID: 0}
-  recovery: {fileID: 0}
-  moveSpeed: {fileID: 0}
-  might: {fileID: 0}
-  projectileSpeed: {fileID: 0}
+  maxHealth: 30
+  recovery: 1
+  moveSpeed: 5
+  might: 1
+  projectileSpeed: 1
