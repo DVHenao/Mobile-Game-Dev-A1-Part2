@@ -43380,9 +43380,11 @@ MonoBehaviour:
   attackAreaLeft: {fileID: 0}
   attackSpeed: 0.25
   timer: 0
+  currentHealth: 0
   experience: 0
   level: 1
   experienceCap: 100
+  iFrameDuration: 0.5
 --- !u!95 &2131447551
 Animator:
   serializedVersion: 5

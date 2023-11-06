@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
     public float attackSpeed = 0.25f;
     public float timer;
 
-    float currentHealth;
+    public float currentHealth;
     float currentRecovery;
     float currentMoveSpeed;
     float currentMight;
@@ -132,7 +132,6 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-
         if (attacking)
         {
             timer += Time.deltaTime;
@@ -153,6 +152,8 @@ public class PlayerScript : MonoBehaviour
         }
         else if (iFrameActive)
             iFrameActive = false;
+
+        //RecoverHealth(currentRecovery);
     }
 
     void FixedUpdate()
@@ -269,6 +270,20 @@ public class PlayerScript : MonoBehaviour
             experienceCap = experienceCap * 1.08f;
         } 
     }
+
+    public void RecoverHealth(float recovery)
+    {
+        if (currentHealth < playerData.MaxHealth)
+        {
+            currentHealth += recovery;
+
+            if (currentHealth > playerData.MaxHealth)
+            {
+                currentHealth = playerData.MaxHealth;
+            }
+        }
+    }
+
 
 
     public void OnTriggerEnter2D(Collider2D collision) // Pickup Audio
