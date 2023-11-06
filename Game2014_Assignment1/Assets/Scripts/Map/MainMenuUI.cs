@@ -32,8 +32,13 @@ public class MainMenuUI : MonoBehaviour
 
     public GameObject MobileJoystick;
 
+
+
     public void Start()
     {
+
+       
+
         bool usingMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
 
         if (!usingMobileInput)
@@ -95,4 +100,5 @@ public class MainMenuUI : MonoBehaviour
     {
         MobileJoystick.SetActive(false);
     }
+
 }

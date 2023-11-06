@@ -12,12 +12,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
-
+    public List<GameObject> spawnedWeapons;
 
 
     Rigidbody2D rb;
@@ -68,12 +69,14 @@ public class PlayerScript : MonoBehaviour
         currentMoveSpeed = playerData.MoveSpeed;
         currentMight = playerData.Might;
         currentProjectileSpeed = playerData.ProjectileSpeed;
+
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -282,6 +285,15 @@ public class PlayerScript : MonoBehaviour
                 currentHealth = playerData.MaxHealth;
             }
         }
+    }
+
+    public void SetStartingPlayer(PlayerScriptableObject PlayerData)
+    {
+        playerData = PlayerData;
+
+        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0,-0.75f,0), Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform);
+        spawnedWeapons.Add(spawnedWeapon);
     }
 
 
