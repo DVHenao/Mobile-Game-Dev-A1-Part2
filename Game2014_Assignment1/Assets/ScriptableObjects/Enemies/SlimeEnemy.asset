@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b2419d54eada34799b1c79cf1fe908, type: 3}
-  m_Name: KnifeWeapon
+  m_Script: {fileID: 11500000, guid: b7475bc989de3ec41b159f43c097dab9, type: 3}
+  m_Name: SlimeEnemy
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  moveSpeed: 0
+  maxHealth: 0
   damage: 0
-  speed: 0
-  cooldownDuration: 0
-  pierce: 0

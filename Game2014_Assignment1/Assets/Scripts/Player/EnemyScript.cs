@@ -8,16 +8,20 @@ Revision History: Enemy chases player, inflicts damage and can take hits - Oct 1
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public EnemyScriptableObject enemyData;
     public GameObject player;
-    public float moveSpeed;
-
     public float distance;
-    public float health;
     public GameObject UI;
+
+    float currentMoveSpeed;
+    float currentHealth;
+    float currentDamage;
+
 
 
     Animator animator;
@@ -26,12 +30,20 @@ public class EnemyScript : MonoBehaviour
     float lastVerticalVector;
 
 
+
+    private void Awake()
+    {
+        currentMoveSpeed = enemyData.MoveSpeed;
+        currentHealth = enemyData.MaxHealth;
+        currentDamage = enemyData.Damage;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = 10;
         player = GameObject.FindWithTag("Player");
         UI = GameObject.Find("UICanvas");
     }
@@ -47,7 +59,7 @@ public class EnemyScript : MonoBehaviour
             lastVerticalVector = direction.y;
 
 
-        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, currentMoveSpeed * Time.deltaTime);
 
         // everything above this comment is for homing towards player and setting correct sprite direction
 
@@ -62,10 +74,7 @@ public class EnemyScript : MonoBehaviour
             //animator.SetBool("isMoving", false);
         }
 
-        if(health <= 0)
-        {
-            Die();
-        }
+        
     }
 
 
@@ -84,8 +93,17 @@ public class EnemyScript : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 player.GetComponent<PlayerScript>().TakeDamage();
-                gameObject.transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
+                transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
             }
+
+            if (collision.gameObject.tag == "RangedWeapon")
+            {
+
+                TakeDamage(collision.gameObject.GetComponent<ProjectileWeaponBehaviour>().weaponData.Damage);
+                transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
+            }
+
+
         }
     }
     public void Die()
@@ -94,7 +112,15 @@ public class EnemyScript : MonoBehaviour
         Debug.Log("enemy Died");
         Destroy(gameObject);
     }
-
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
 }
 

@@ -14,7 +14,7 @@ public class RighteousFireController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedWeapon = Instantiate(weaponData.prefab);
+        GameObject spawnedWeapon = Instantiate(weaponData.Prefab);
 
         spawnedWeapon.transform.position = transform.position;
         spawnedWeapon.transform.parent = transform;//test

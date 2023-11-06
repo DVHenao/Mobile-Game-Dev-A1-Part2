@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b2419d54eada34799b1c79cf1fe908, type: 3}
   m_Name: RighteousFireWeapon
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 7615053005528943741, guid: 604d95eab45a8664c92c2e95d462e0ae, type: 3}
   damage: 0
   speed: 0
-  cooldownDuration: 0
+  cooldownDuration: 3
   pierce: 0
