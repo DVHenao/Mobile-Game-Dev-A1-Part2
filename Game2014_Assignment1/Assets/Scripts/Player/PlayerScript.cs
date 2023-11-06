@@ -55,6 +55,10 @@ public class PlayerScript : MonoBehaviour
     public int level = 1;
     public float experienceCap = 100;
 
+    public float iFrameDuration;
+    float iFrameTimer;
+    bool iFrameActive;
+
 
 
     public void Awake()
@@ -142,6 +146,13 @@ public class PlayerScript : MonoBehaviour
                 attackAreaLeft.SetActive(attacking);
             }
         }
+
+        if(iFrameTimer>0)
+        {
+            iFrameTimer -= Time.deltaTime;
+        }
+        else if (iFrameActive)
+            iFrameActive = false;
     }
 
     void FixedUpdate()
@@ -193,16 +204,21 @@ public class PlayerScript : MonoBehaviour
     }
     public void TakeDamage(float dmg) // self explantory
     {
-
-        audioSource.clip = takeDamageSound;
-        audioSource.Play();
-
-        currentHealth -= 10; 
-        UIObject.GetComponent<MainMenuUI>().TakeDamage();
-
-        if (currentHealth <= 0) 
+        if(!iFrameActive)
         {
-            Die();
+            audioSource.clip = takeDamageSound;
+            audioSource.Play();
+
+            currentHealth -= dmg;
+            UIObject.GetComponent<MainMenuUI>().TakeDamage();
+
+            iFrameTimer = iFrameDuration;
+            iFrameActive = true;
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 

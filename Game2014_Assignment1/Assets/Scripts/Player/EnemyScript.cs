@@ -88,7 +88,6 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             player.GetComponent<PlayerScript>().TakeDamage(currentDamage);
-            transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
         }
 
     }
