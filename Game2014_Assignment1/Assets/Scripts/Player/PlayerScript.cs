@@ -8,6 +8,7 @@ Revision History: Cerntal script for all game logic and player logic. seperate i
 
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,9 +16,10 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public PlayerScriptableObject playerData;
 
-    public float moveSpeed;
-  
+
+
     Rigidbody2D rb;
     public Vector2 moveDir;
 
@@ -35,11 +37,7 @@ public class PlayerScript : MonoBehaviour
     public float lastVerticalVector;
     public Vector2 lastMovedVector;
 
-
-
-    public float health;
     public GameObject UIObject;
-
 
     public bool attacking;
     public GameObject attackAreaRight;
@@ -47,7 +45,26 @@ public class PlayerScript : MonoBehaviour
     public float attackSpeed = 0.25f;
     public float timer;
 
+    float currentHealth;
+    float currentRecovery;
+    float currentMoveSpeed;
+    float currentMight;
+    float currentProjectileSpeed;
 
+    public int experience = 0;
+    public int level = 1;
+    public float experienceCap = 100;
+
+
+
+    public void Awake()
+    {
+        currentHealth = playerData.MaxHealth;
+        currentRecovery = playerData.Recovery;
+        currentMoveSpeed = playerData.MoveSpeed;
+        currentMight = playerData.Might;
+        currentProjectileSpeed = playerData.ProjectileSpeed;
+    }
 
 
     // Start is called before the first frame update
@@ -61,7 +78,6 @@ public class PlayerScript : MonoBehaviour
 
         attackAreaRight = transform.GetChild(0).gameObject;
         attackAreaLeft = transform.GetChild(1).gameObject;
-        health = 30;
 
 
         rb.velocity = new Vector2(0, 0);
@@ -70,6 +86,10 @@ public class PlayerScript : MonoBehaviour
         lastMovedVector = new Vector2(1, 0);
 
         ResumeGame(); // this is here just in case
+
+
+
+
     }
 
     // Update is called once per frame
@@ -162,7 +182,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        rb.velocity = new Vector2(moveDir.x * playerData.MoveSpeed, moveDir.y * playerData.MoveSpeed);
     }
 
 
@@ -171,16 +191,16 @@ public class PlayerScript : MonoBehaviour
         if (lastHorizontalVector < 0) { spriteRenderer.flipX = true; }
         else { spriteRenderer.flipX = false; }
     }
-    public void TakeDamage() // self explantory
+    public void TakeDamage(float dmg) // self explantory
     {
 
         audioSource.clip = takeDamageSound;
         audioSource.Play();
 
-        health -= 10;
+        currentHealth -= 10; 
         UIObject.GetComponent<MainMenuUI>().TakeDamage();
 
-        if (health <= 0)
+        if (currentHealth <= 0) 
         {
             Die();
         }
@@ -216,6 +236,25 @@ public class PlayerScript : MonoBehaviour
         }
         animator.SetBool("isAttacking", attacking);
     }
+
+    public void IncreaseExperience(int amount)
+    {
+        experience += amount;
+
+        LevelUpChecker();
+    }
+
+    public void LevelUpChecker()
+    {
+        if (experience >= experienceCap)
+        {
+            level++;
+            experience -= Convert.ToInt32(experienceCap);
+            experienceCap = experienceCap * 1.08f;
+        } 
+    }
+
+
     public void OnTriggerEnter2D(Collider2D collision) // Pickup Audio
     {
         if (collision.gameObject.tag == "PickUp")
@@ -233,11 +272,11 @@ public class PlayerScript : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(5);
 
-        moveSpeed += 3;
+       currentMoveSpeed += 3;//replace with currenty speed later
 
         yield return wait;
 
-        moveSpeed -= 3;
+        currentMoveSpeed -= 3;//replace with curernt speed later 
     }
 
 }

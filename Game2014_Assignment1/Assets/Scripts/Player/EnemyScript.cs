@@ -18,17 +18,16 @@ public class EnemyScript : MonoBehaviour
     public float distance;
     public GameObject UI;
 
-    float currentMoveSpeed;
-    float currentHealth;
-    float currentDamage;
-
-
 
     Animator animator;
     SpriteRenderer spriteRenderer;
     float lastHorizontalVector;
     float lastVerticalVector;
 
+    float currentMoveSpeed;
+    float currentHealth;
+    float currentDamage;
+    int currentExperienceValue;
 
 
     private void Awake()
@@ -36,7 +35,7 @@ public class EnemyScript : MonoBehaviour
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
-
+        currentExperienceValue = enemyData.ExperienceValue;
     }
 
     // Start is called before the first frame update
@@ -86,30 +85,18 @@ public class EnemyScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision) // to inflict damage on the player
     {
-        if (collision == null)
-        { Debug.Log("collision is null"); }
-        else
+        if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Player")
-            {
-                player.GetComponent<PlayerScript>().TakeDamage();
-                transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
-            }
-
-            if (collision.gameObject.tag == "RangedWeapon")
-            {
-
-                TakeDamage(collision.gameObject.GetComponent<ProjectileWeaponBehaviour>().weaponData.Damage);
-                transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
-            }
-
-
+            player.GetComponent<PlayerScript>().TakeDamage(currentDamage);
+            transform.position = new Vector2(Random.Range(-13, 13), Random.Range(-13, 13));
         }
+
     }
     public void Die()
     {
         UI.GetComponent<MainMenuUI>().MoveScore();
         Debug.Log("enemy Died");
+        player.GetComponent<PlayerScript>().IncreaseExperience(currentExperienceValue);
         Destroy(gameObject);
     }
     public void TakeDamage(float dmg)

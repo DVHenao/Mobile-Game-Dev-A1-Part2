@@ -22,8 +22,11 @@ public class AttackScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-
-            //collision.GetComponent<EnemyScript>().enemyData.MaxHealth -= 10;// self explanatory
+            if (collision.CompareTag("Enemy"))
+            {
+                EnemyScript enemy = collision.GetComponent<EnemyScript>();
+                enemy.TakeDamage(damage);
+            }
         }
     }
 }
