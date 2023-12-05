@@ -16,6 +16,7 @@ public class RighteousFireBehaviour : MeleeWeaponBehaviour
     {
         if (collision.CompareTag("Enemy") && !markedEnemies.Contains(collision.gameObject))
         {
+            Debug.Log("rf overlap");
             EnemyScript enemy = collision.GetComponent<EnemyScript>();
             enemy.TakeDamage(currentDamage);
             markedEnemies.Add(collision.gameObject);

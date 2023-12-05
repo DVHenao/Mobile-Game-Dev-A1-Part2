@@ -96,6 +96,10 @@ public class EnemyScript : MonoBehaviour
         UI.GetComponent<MainMenuUI>().MoveScore();
         Debug.Log("enemy Died");
         player.GetComponent<PlayerScript>().IncreaseExperience(currentExperienceValue);
+
+        EnemySpawner es = FindObjectOfType<EnemySpawner>();
+        es.OnEnemyKilled();
+
         Destroy(gameObject);
     }
     public void TakeDamage(float dmg)

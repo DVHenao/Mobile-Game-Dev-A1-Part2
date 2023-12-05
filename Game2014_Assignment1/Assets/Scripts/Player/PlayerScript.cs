@@ -271,6 +271,8 @@ public class PlayerScript : MonoBehaviour
             level++;
             experience -= Convert.ToInt32(experienceCap);
             experienceCap = experienceCap * 1.08f;
+
+
         } 
     }
 
@@ -291,7 +293,7 @@ public class PlayerScript : MonoBehaviour
     {
         playerData = PlayerData;
 
-        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0,-0.75f,0), Quaternion.identity);
+        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0,-0.75f,0),Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);
         spawnedWeapons.Add(spawnedWeapon);
     }
