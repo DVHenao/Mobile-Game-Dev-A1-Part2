@@ -22,6 +22,10 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         currentPierce= weaponData.Pierce;
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= GameObject.FindWithTag("Player").GetComponent<PlayerScript>().currentMight;
+    }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -85,7 +89,7 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             EnemyScript enemy = collision.GetComponent<EnemyScript>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
             ReducePierce();
 
         }

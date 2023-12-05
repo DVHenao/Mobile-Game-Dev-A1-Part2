@@ -21,7 +21,10 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         currentPierce = weaponData.Pierce;
     }
 
-
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= GameObject.FindWithTag("Player").GetComponent<PlayerScript>().currentMight;
+    }
 
     protected virtual void Start()
     {
@@ -34,7 +37,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         {
             Debug.Log("Overlap");
             EnemyScript enemy = collision.GetComponent<EnemyScript>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
             //ReducePierce();
 
         }

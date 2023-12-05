@@ -18,7 +18,7 @@ public class RighteousFireBehaviour : MeleeWeaponBehaviour
         {
             Debug.Log("rf overlap");
             EnemyScript enemy = collision.GetComponent<EnemyScript>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
             markedEnemies.Add(collision.gameObject);
             //ReducePierce();
 

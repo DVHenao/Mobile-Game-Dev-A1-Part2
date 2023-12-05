@@ -47,10 +47,10 @@ public class PlayerScript : MonoBehaviour
     public float timer;
 
     public float currentHealth;
-    float currentRecovery;
-    float currentMoveSpeed;
-    float currentMight;
-    float currentProjectileSpeed;
+    public float currentRecovery;
+    public float currentMoveSpeed;
+    public float currentMight;
+    public float currentProjectileSpeed;
 
     public int experience = 0;
     public int level = 1;
@@ -197,7 +197,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector2(moveDir.x * playerData.MoveSpeed, moveDir.y * playerData.MoveSpeed);
+        rb.velocity = new Vector2(moveDir.x * currentMoveSpeed, moveDir.y * currentMoveSpeed);
     }
 
 
