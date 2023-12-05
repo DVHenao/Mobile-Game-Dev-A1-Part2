@@ -64,7 +64,8 @@ public class PlayerScript : MonoBehaviour
     public int weaponIndex;
     public int passiveItemIndex;
 
-
+    public GameObject firstpit, secondpit;
+    public GameObject secondWeaponTest;
 
     public void Awake()
     {
@@ -75,6 +76,9 @@ public class PlayerScript : MonoBehaviour
         currentMoveSpeed = playerData.MoveSpeed;
         currentMight = playerData.Might;
         currentProjectileSpeed = playerData.ProjectileSpeed;
+
+        SpawnPassiveItem(firstpit);
+        SpawnPassiveItem(secondpit);
     }
 
 
@@ -304,12 +308,29 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0, -0.75f, 0), Quaternion.identity);
+        GameObject spawnedWeapon = Instantiate(weapon, new Vector3(0, -0.75f, 0), Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);
-        inventory.addWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());
+        inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());
 
         weaponIndex++;
     }
+
+    public void SpawnPassiveItem(GameObject passiveItem)
+    {
+        Debug.Log("SpawnPassiveItem()");
+        if ((passiveItemIndex >= inventory.passiveItemSlots.Count - 1))
+        {
+            Debug.LogError("Inventory slots already full");
+            return;
+        }
+
+        GameObject spawnedPassiveItem = Instantiate(passiveItem, new Vector3(0, -0.75f, 0), Quaternion.identity);
+        spawnedPassiveItem.transform.SetParent(transform);
+        inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());
+
+        passiveItemIndex++;
+    }
+
 
 
 

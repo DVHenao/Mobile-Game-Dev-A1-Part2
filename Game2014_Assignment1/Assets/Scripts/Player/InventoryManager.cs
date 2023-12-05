@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     public int[] passiveItemLevels = new int[6];
 
 
-    public void addWeapon(int slotIndex, WeaponController weapon)
+    public void AddWeapon(int slotIndex, WeaponController weapon)
     {
         weaponSlots[slotIndex] = weapon;
     }
