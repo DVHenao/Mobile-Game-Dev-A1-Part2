@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RighteousFireWeapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 7615053005528943741, guid: 604d95eab45a8664c92c2e95d462e0ae, type: 3}
-  damage: 5
+  damage: 10
   speed: 10
   cooldownDuration: 3
   pierce: 0

@@ -18,7 +18,6 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
-    public List<GameObject> spawnedWeapons;
 
 
     Rigidbody2D rb;
@@ -61,15 +60,21 @@ public class PlayerScript : MonoBehaviour
     bool iFrameActive;
 
 
+    InventoryManager inventory;
+    public int weaponIndex;
+    public int passiveItemIndex;
+
+
 
     public void Awake()
     {
+        inventory = GetComponent<InventoryManager>();
+
         currentHealth = playerData.MaxHealth;
         currentRecovery = playerData.Recovery;
         currentMoveSpeed = playerData.MoveSpeed;
         currentMight = playerData.Might;
         currentProjectileSpeed = playerData.ProjectileSpeed;
-
     }
 
 
@@ -93,10 +98,6 @@ public class PlayerScript : MonoBehaviour
         lastMovedVector = new Vector2(1, 0);
 
         ResumeGame(); // this is here just in case
-
-
-
-
     }
 
     // Update is called once per frame
@@ -292,10 +293,22 @@ public class PlayerScript : MonoBehaviour
     public void SetStartingPlayer(PlayerScriptableObject PlayerData)
     {
         playerData = PlayerData;
+    }
 
-        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0,-0.75f,0),Quaternion.identity);
+    public void SpawnWeapon(GameObject weapon)
+    {
+        Debug.Log("SpawnWeapon()");
+        if ((weaponIndex >= inventory.weaponSlots.Count - 1))
+        {
+            Debug.LogError("Inventory slots already full");
+            return;
+        }
+
+        GameObject spawnedWeapon = Instantiate(playerData.StartingWeapon, new Vector3(0, -0.75f, 0), Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);
-        spawnedWeapons.Add(spawnedWeapon);
+        inventory.addWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());
+
+        weaponIndex++;
     }
 
 

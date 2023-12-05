@@ -36,6 +36,7 @@ public class CharacterSelect : MonoBehaviour
     {
         characterData = character;
         player.GetComponent<PlayerScript>().SetStartingPlayer(characterData);
+        player.GetComponent<PlayerScript>().SpawnWeapon(characterData.StartingWeapon);
         characterSelected = true;
         ResumeGame();
         gameObject.SetActive(false);
