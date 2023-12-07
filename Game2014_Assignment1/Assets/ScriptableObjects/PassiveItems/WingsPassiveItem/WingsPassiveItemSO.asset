@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: WingsPassiveItemSO
   m_EditorClassIdentifier: 
   multiplier: 25
+  level: 1
+  nextLevelPrefab: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8133711399922893861}
   - component: {fileID: 1213058283641364456}
   m_Layer: 6
-  m_Name: knife
+  m_Name: Knife
   m_TagString: RangedWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

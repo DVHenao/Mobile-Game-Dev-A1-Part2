@@ -43513,6 +43513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586427908}
+  - component: {fileID: 1586427909}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43529,13 +43530,27 @@ Transform:
   m_GameObject: {fileID: 1586427907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 571.9056, y: 324.97098, z: -4.8450117}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 96331407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586427909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586427907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3508275502070834b9682335d182986d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  previousState: 0
 --- !u!1 &1817726455
 GameObject:
   m_ObjectHideFlags: 0
@@ -43971,6 +43986,7 @@ GameObject:
   - component: {fileID: 2131447549}
   - component: {fileID: 2131447548}
   - component: {fileID: 2131447550}
+  - component: {fileID: 2131447553}
   - component: {fileID: 2131447551}
   - component: {fileID: 2131447552}
   m_Layer: 6
@@ -44134,7 +44150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 9fc5ebae9711de04393e467a76b035ab, type: 2}
-  spawnedWeapons: []
   moveDir: {x: 0, y: 0}
   audioSource: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: bd1ca613a40ba7940ba59961f4d16452, type: 3}
@@ -44151,10 +44166,19 @@ MonoBehaviour:
   attackSpeed: 0.25
   timer: 0
   currentHealth: 0
+  currentRecovery: 0
+  currentMoveSpeed: 0
+  currentMight: 0
+  currentProjectileSpeed: 0
   experience: 0
   level: 1
   experienceCap: 100
   iFrameDuration: 0.5
+  weaponIndex: 0
+  passiveItemIndex: 0
+  firstpit: {fileID: 5764710065291488704, guid: ac3a97298f8360b49971abeb8978ab4f, type: 3}
+  secondpit: {fileID: 1609054736173642385, guid: 89488dccd55546a48bac82cbb436f44d, type: 3}
+  secondWeaponTest: {fileID: 4296887228599654003, guid: 76639d16a2ba6c54099b87d41607ef63, type: 3}
 --- !u!95 &2131447551
 Animator:
   serializedVersion: 5
@@ -44272,6 +44296,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2131447553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131447545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ac415366252d343afb2d9c07fd608e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponLevels: 000000000000000000000000000000000000000000000000
+  passiveItemSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passiveItemLevels: 000000000000000000000000000000000000000000000000
 --- !u!1 &2138267280
 GameObject:
   m_ObjectHideFlags: 0

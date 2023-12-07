@@ -9,14 +9,17 @@ public class PassiveItemScriptableObject : ScriptableObject
     float multiplier;
     public float Multiplier {  get => multiplier; private set => multiplier = value; }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    [SerializeField]
+    int level; //not meant to be modified in game only in editor
+    public int Level { get => level; private set => level = value; }
+
+    [SerializeField]
+    GameObject nextLevelPrefab; // the prefab of the upgraded object
+    public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
+
+    [SerializeField]
+    Sprite icon; // the prefab of the upgraded object
+    public Sprite Icon { get => icon; private set => icon = value; }
 }
