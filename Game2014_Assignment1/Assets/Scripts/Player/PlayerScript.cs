@@ -67,6 +67,10 @@ public class PlayerScript : MonoBehaviour
     public GameObject firstpit, secondpit;
     public GameObject secondWeaponTest;
 
+    public GameObject gameManager;
+
+
+
     public void Awake()
     {
         inventory = GetComponent<InventoryManager>();
@@ -85,7 +89,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager");
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -277,7 +281,7 @@ public class PlayerScript : MonoBehaviour
             experience -= Convert.ToInt32(experienceCap);
             experienceCap = experienceCap * 1.08f;
 
-
+            gameManager.GetComponent<GameManager>().StartLevelUp();
         } 
     }
 

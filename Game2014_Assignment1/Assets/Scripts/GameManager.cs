@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     {
         Gameplay,
         Paused,
-        GameOver
+        GameOver,
+        LevelUp
     }
 
     public GameState currentState;
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject pauseScreen;
+    public GameObject levelUpScreen;
+
+
+    public bool choosingUpgrade = false;
+
+
 
     private void Awake()
     {
@@ -36,6 +43,16 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
+                break;
+
+            case GameState.LevelUp:
+                if(!choosingUpgrade)
+                {
+                    choosingUpgrade = true;
+                    Time.timeScale = 0;
+                    Debug.Log("upgradescreen");
+                    levelUpScreen.SetActive(true);
+                }
                 break;
 
             default:
@@ -90,5 +107,21 @@ public class GameManager : MonoBehaviour
     void DisableScreens()
     {
         pauseScreen.SetActive(false);
+        levelUpScreen.SetActive(false);
     }
+
+    public void StartLevelUp()
+    {
+        ChangeState(GameState.LevelUp);
+    }
+
+    public void EndLevelUp()
+    {
+        ChangeState(GameState.LevelUp);
+        Time.timeScale = 1f;
+        levelUpScreen.SetActive(true);
+        ChangeState(GameState.Gameplay);
+    }
+
+
 }
