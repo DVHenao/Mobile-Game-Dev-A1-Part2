@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour
     public int passiveItemIndex;
 
     public GameObject firstpit, secondpit;
-    public GameObject secondWeaponTest;
+    //public GameObject secondWeaponTest;
 
     public GameObject gameManager;
 
@@ -81,8 +81,8 @@ public class PlayerScript : MonoBehaviour
         currentMight = playerData.Might;
         currentProjectileSpeed = playerData.ProjectileSpeed;
 
-        SpawnPassiveItem(firstpit);
-        SpawnPassiveItem(secondpit);
+        //SpawnPassiveItem(firstpit);
+        //SpawnPassiveItem(secondpit);
     }
 
 
@@ -313,6 +313,8 @@ public class PlayerScript : MonoBehaviour
         }
 
         GameObject spawnedWeapon = Instantiate(weapon, new Vector3(0, -0.75f, 0), Quaternion.identity);
+        //spawnedWeapon.transform.position = new Vector3(0, -0.75f, 0); // testing
+
         spawnedWeapon.transform.SetParent(transform);
         inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());
 

@@ -22,4 +22,14 @@ public class PassiveItemScriptableObject : ScriptableObject
     [SerializeField]
     Sprite icon; // the prefab of the upgraded object
     public Sprite Icon { get => icon; private set => icon = value; }
+
+    [SerializeField]
+    new string name;
+    public string Name { get => name; private set => name = value; }
+
+    [SerializeField]
+    string description;
+    public string Description { get => description; private set => description = value; }
+
+
 }

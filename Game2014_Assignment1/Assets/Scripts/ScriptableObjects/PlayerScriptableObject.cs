@@ -11,6 +11,10 @@ public class PlayerScriptableObject : ScriptableObject
     public GameObject StartingWeapon { get => startingWeapon; private set => startingWeapon = value; }
 
     [SerializeField]
+    GameObject startingPassiveItem;
+    public GameObject StartingPassiveItem { get => startingPassiveItem; private set => startingPassiveItem = value; }
+
+    [SerializeField]
     float maxHealth;
     public float MaxHealth { get => maxHealth; private set => maxHealth = value; }
 

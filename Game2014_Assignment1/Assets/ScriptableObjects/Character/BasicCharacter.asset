@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BasicCharacter
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 5541801548690898078, guid: 166320db6e50a864e824f2db84f59e54, type: 3}
+  startingPassiveItem: {fileID: 1609054736173642385, guid: 89488dccd55546a48bac82cbb436f44d, type: 3}
   maxHealth: 30
   recovery: 1
   moveSpeed: 5

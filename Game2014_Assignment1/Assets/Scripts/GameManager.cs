@@ -23,11 +23,12 @@ public class GameManager : MonoBehaviour
 
     public bool choosingUpgrade = false;
 
-
+    public GameObject player;
 
     private void Awake()
     {
         DisableScreens();
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
@@ -113,13 +114,14 @@ public class GameManager : MonoBehaviour
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
+        player.SendMessage("RemoveAndApplyUpgrades");
     }
 
     public void EndLevelUp()
     {
         ChangeState(GameState.LevelUp);
         Time.timeScale = 1f;
-        levelUpScreen.SetActive(true);
+        levelUpScreen.SetActive(false);
         ChangeState(GameState.Gameplay);
     }
 

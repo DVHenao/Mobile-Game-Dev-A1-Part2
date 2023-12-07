@@ -16,3 +16,5 @@ MonoBehaviour:
   level: 2
   nextLevelPrefab: {fileID: 0}
   icon: {fileID: 791863063, guid: dd678f9f2860fa142bff95efb1527e17, type: 3}
+  name: Wings Lvl 2
+  description: Speed the player up faster

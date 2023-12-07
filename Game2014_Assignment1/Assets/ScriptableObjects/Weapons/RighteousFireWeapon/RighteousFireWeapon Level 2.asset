@@ -19,4 +19,6 @@ MonoBehaviour:
   pierce: 0
   level: 2
   nextLevelPrefab: {fileID: 0}
+  name: Righteous Fire Lvl 2
+  description: Quicker Cooldown
   icon: {fileID: 1128791081, guid: dd678f9f2860fa142bff95efb1527e17, type: 3}
