@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3b2419d54eada34799b1c79cf1fe908, type: 3}
-  m_Name: RighteousFireWeapon Level 2
+  m_Name: RighteousFireWeapon Level 3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7615053005528943741, guid: 74fda17489e5a3b488d706a5b75cc562, type: 3}
+  prefab: {fileID: 7615053005528943741, guid: 6937083143f8d9b4d8253da2f14de725, type: 3}
   damage: 10
   speed: 10
   cooldownDuration: 2.5
   pierce: 0
-  level: 2
-  nextLevelPrefab: {fileID: 5252297552220166823, guid: 174abf64dd2c90844afb170560d4e15b, type: 3}
-  name: Righteous Fire Lvl 2
-  description: Quicker Cooldown
+  level: 3
+  nextLevelPrefab: {fileID: 0}
+  name: Righteous Fire Lvl 3
+  description: Larger AOE
   icon: {fileID: 1128791081, guid: dd678f9f2860fa142bff95efb1527e17, type: 3}

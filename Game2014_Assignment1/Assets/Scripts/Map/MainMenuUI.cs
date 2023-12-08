@@ -18,8 +18,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuUI : MonoBehaviour
 {
 
-    public GameObject[] Hearts;
     public GameObject GameOverUI;
+    public GameObject player;
 
     public TMP_Text ScoreValue;
     public TMP_Text GameOverScoreValue;
@@ -36,8 +36,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void Start()
     {
+        player = GameObject.FindWithTag("Player");
 
-       
 
         bool usingMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
 
@@ -70,14 +70,10 @@ public class MainMenuUI : MonoBehaviour
 
     public void TakeDamage()
     {
-        Destroy(Hearts[Hearts.Length - 1]);
-
-       if (Hearts.Length > 0)
-       System.Array.Resize(ref Hearts,Hearts.Length-1);// self explanatory we do this to dynamically change the array, could use list instead
-
-        if (Hearts.Length == 0)
+        if(player.GetComponent<PlayerScript>().currentHealth<=0)
+        {
             GameOver();
-
+        }
     }
 
     public void GameOver() // self explanatory

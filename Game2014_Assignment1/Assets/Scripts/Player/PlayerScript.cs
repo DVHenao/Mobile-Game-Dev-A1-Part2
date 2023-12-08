@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -69,7 +71,10 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject gameManager;
 
-
+    [Header("UI")]
+    public Image healthBar;
+    public Image expBar;
+    public TMP_Text LevelText;
 
     public void Awake()
     {
@@ -106,6 +111,9 @@ public class PlayerScript : MonoBehaviour
         lastMovedVector = new Vector2(1, 0);
 
         ResumeGame(); // this is here just in case
+        UpdateHealthBar();
+        UpdateEXPBar();
+        UpdateLevelText();
     }
 
     // Update is called once per frame
@@ -232,6 +240,7 @@ public class PlayerScript : MonoBehaviour
             {
                 Die();
             }
+            UpdateHealthBar();
         }
     }
 
@@ -266,10 +275,21 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool("isAttacking", attacking);
     }
 
+    public void UpdateEXPBar()
+    {
+        expBar.fillAmount = (float)experience / experienceCap;
+    }
+
+    public void UpdateLevelText()
+    {
+        LevelText.text = "LVL: " + level.ToString();
+    }
+
+
     public void IncreaseExperience(int amount)
     {
         experience += amount;
-
+        UpdateEXPBar();
         LevelUpChecker();
     }
 
@@ -280,6 +300,9 @@ public class PlayerScript : MonoBehaviour
             level++;
             experience -= Convert.ToInt32(experienceCap);
             experienceCap = experienceCap * 1.08f;
+
+            UpdateLevelText();
+
 
             gameManager.GetComponent<GameManager>().StartLevelUp();
         } 
@@ -298,6 +321,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void UpdateHealthBar()
+    {
+        healthBar.fillAmount = currentHealth/playerData.MaxHealth;
+    }
+
+
     public void SetStartingPlayer(PlayerScriptableObject PlayerData)
     {
         playerData = PlayerData;
@@ -312,8 +341,8 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        GameObject spawnedWeapon = Instantiate(weapon, new Vector3(0, -0.75f, 0), Quaternion.identity);
-        //spawnedWeapon.transform.position = new Vector3(0, -0.75f, 0); // testing
+        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        spawnedWeapon.transform.position += new Vector3(0, -0.75f, 0);
 
         spawnedWeapon.transform.SetParent(transform);
         inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>());
@@ -330,7 +359,9 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        GameObject spawnedPassiveItem = Instantiate(passiveItem, new Vector3(0, -0.75f, 0), Quaternion.identity);
+        GameObject spawnedPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
+        spawnedPassiveItem.transform.position += new Vector3(0, -0.75f, 0);
+
         spawnedPassiveItem.transform.SetParent(transform);
         inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>());
 
