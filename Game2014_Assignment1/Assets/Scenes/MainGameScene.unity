@@ -415,11 +415,39 @@ MonoBehaviour:
     waveQuota: 0
     spawnInterval: 1
     spawnCount: 0
+  - waveName: Wave 2
+    enemyGroups:
+    - enemyName: RedSlime
+      enemyCount: 2
+      spawnCount: 0
+      enemyPrefab: {fileID: 449362319014520370, guid: 66618c5935dfe39429333505710fc626, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  - waveName: Wave 3
+    enemyGroups:
+    - enemyName: BlueSlime
+      enemyCount: 4
+      spawnCount: 0
+      enemyPrefab: {fileID: 449362319014520370, guid: a093b76c8bfefde499ea73976dd0b8b8, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  - waveName: Wave 4
+    enemyGroups:
+    - enemyName: RedSlime
+      enemyCount: 2
+      spawnCount: 0
+      enemyPrefab: {fileID: 449362319014520370, guid: 66618c5935dfe39429333505710fc626, type: 3}
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
-  maxEnemiesAllowed: 4
+  maxEnemiesAllowed: 5
   maxEnemiesReached: 0
-  waveInterval: 3
+  waveInterval: 5
+  isWaveActive: 0
   relativeSpawnPoints:
   - {fileID: 0}
   - {fileID: 0}

@@ -94,7 +94,7 @@ public class MainMenuUI : MonoBehaviour
 
     void HideUI()
     {
-        MobileJoystick.SetActive(false);
+        //MobileJoystick.SetActive(false);
     }
 
 }

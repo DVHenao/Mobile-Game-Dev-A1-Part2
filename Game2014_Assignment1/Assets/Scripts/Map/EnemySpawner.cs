@@ -80,6 +80,8 @@ public class EnemySpawner : MonoBehaviour
             currentWaveCount++;
             CalculateWaveQuota();
         }
+
+        CheckToResetWaves();
     }
 
 
@@ -139,77 +141,87 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    public float enemySpawnRate = 1f;
-
-    public float lootSpawnRate = 5f;
-
-    public GameObject lootPrefab;
-
-    public GameObject[] enemyPrefabs;
-
-    public bool canSpawn = true; 
-        
-
-
-
-    void Start()
+    public void CheckToResetWaves()
     {
-        StartCoroutine(Spawner());
-        StartCoroutine(LootSpawner());
-    }
-
-    private IEnumerator Spawner() //simple spawner for enemies
-    {
-        WaitForSeconds wait = new WaitForSeconds(enemySpawnRate);
-
-        while (canSpawn) {
-            yield return wait;
-
-            int rand = Random.Range(0, enemyPrefabs.Length - 1);
-            GameObject enemyToSpawn = enemyPrefabs[rand];
-            
-            Vector2 randPosition = new Vector2(Random.Range(-12,12),Random.Range(-12,12));
-
-
-            Instantiate(enemyToSpawn, randPosition, Quaternion.identity);
-
-            enemySpawnRate -= 0.01f;
-            
-        }
-    }
-
-    private IEnumerator LootSpawner() //simple spawner for pickups
-    {
-        WaitForSeconds wait = new WaitForSeconds(lootSpawnRate);
-
-        while (canSpawn)
+        if (currentWaveCount == waves.Count - 1)
         {
-            yield return wait;
+            currentWaveCount = 0;
 
-            Vector2 randPosition = new Vector2(Random.Range(-12, 12), Random.Range(-12, 12));
-
-
-            Instantiate(lootPrefab, randPosition, Quaternion.identity);
+            for (int i = 0; i < waves.Count; i++)
+            {
+                waves[i].spawnCount = 0;
+            }
         }
     }
-    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        public float enemySpawnRate = 1f;
+
+        public float lootSpawnRate = 5f;
+
+        public GameObject lootPrefab;
+
+        public GameObject[] enemyPrefabs;
+
+        public bool canSpawn = true; 
+
+
+
+
+        void Start()
+        {
+            StartCoroutine(Spawner());
+            StartCoroutine(LootSpawner());
+        }
+
+        private IEnumerator Spawner() //simple spawner for enemies
+        {
+            WaitForSeconds wait = new WaitForSeconds(enemySpawnRate);
+
+            while (canSpawn) {
+                yield return wait;
+
+                int rand = Random.Range(0, enemyPrefabs.Length - 1);
+                GameObject enemyToSpawn = enemyPrefabs[rand];
+
+                Vector2 randPosition = new Vector2(Random.Range(-12,12),Random.Range(-12,12));
+
+
+                Instantiate(enemyToSpawn, randPosition, Quaternion.identity);
+
+                enemySpawnRate -= 0.01f;
+
+            }
+        }
+
+        private IEnumerator LootSpawner() //simple spawner for pickups
+        {
+            WaitForSeconds wait = new WaitForSeconds(lootSpawnRate);
+
+            while (canSpawn)
+            {
+                yield return wait;
+
+                Vector2 randPosition = new Vector2(Random.Range(-12, 12), Random.Range(-12, 12));
+
+
+                Instantiate(lootPrefab, randPosition, Quaternion.identity);
+            }
+        }
+        */
 }

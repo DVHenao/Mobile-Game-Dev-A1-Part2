@@ -12,7 +12,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -299,7 +298,7 @@ public class PlayerScript : MonoBehaviour
         {
             level++;
             experience -= Convert.ToInt32(experienceCap);
-            experienceCap = experienceCap * 1.08f;
+            experienceCap = experienceCap * 1.25f;
 
             UpdateLevelText();
 
